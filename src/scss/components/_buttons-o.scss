@@ -1,5 +1,5 @@
-/*Buttons*/
-@mixin buttons($colors...) {
+// Buttons Outline
+@mixin buttons-ol($colors...) {
     @if $button {
         .button {
             font:{
@@ -11,31 +11,29 @@
             display: inline-block;
             outline: none;
             border-radius: $rounded;
-            padding: 10px 35px;
+            padding: 10px 25px;
             transition: .7s;
             text-decoration: none;
-            cursor: pointer;
+			cursor: pointer;
             a{
                 text-decoration: none;
             }
             i{
                 margin-right: 5px;
             }
-            img{
-                margin-right: 5px;
-            }
             // Button Defaul
-            &-default_o{
-                background-color: map-get($button-colors,nth($colors, 1));
-                color: $white;
+            &-default-o{
+                background: transparent;
+                color: map-get($button-colors,nth($colors, 1));
                 border: 2px solid map-get($button-colors,nth($colors, 1));
                 transition: .7s;
                 &:hover{
-                    background-color: darken(map-get($button-colors,nth($colors, 1)),2%);
+                    background: transparent;
                     border: 2px solid lighten(map-get($button-colors,nth($colors, 1)),20%);
                     transition: .7s;
+                    color: $white;
                 }
-                &:focus,{
+                &:focus {
                     outline: 0;
                     box-shadow: 0 0 0 0.2rem rgba(map-get($button-colors,nth($colors, 1)),.25);
                     transition: .7s;
@@ -44,36 +42,27 @@
 
             @if length($colors) > 1{
                 @for $i from 2 through length($colors){
-                    &-#{nth($colors,$i)}{
-                        @if map-get($button-colors, nth($colors, $i)) == $yellow {
-                            color: $black;
+                    &-#{nth($colors, $i)}#{-o}{
+                        @if map-get($button-colors, nth($colors, $i)) ==$primary {
+                            // color: $blue;
+                            color: $white;
                         }@else{
+                            // color: map-get($button-colors,nth($colors, $i));
                             color: $white;
                         }
-                        @if map-get($button-colors, nth($colors, $i))== $white{
-                            color: $blue;
+                        @if map-get($button-colors,nth($colors,$i)) ==$white { 
+                            color: $white;
                         }
-                        // color: $white;
-                        background-color: map-get($button-colors,nth($colors, $i));
+                        background: transparent;
                         border: 2px solid map-get($button-colors,nth($colors, $i));
                         transition: .7s;
-                        &:hover{
+                        &:hover {
                             background-color: darken(map-get($button-colors,nth($colors, $i)),2%);
                             transition: .7s;
-                             @if map-get($button-colors, nth($colors, $i)) == $yellow {
-                                color: $black;
-                                a{
-                                    color: $white;
-                                }
+                             @if map-get($button-colors, nth($colors, $i)) == $white {
+                                color: $blue;
                             }@else{
                                 color: $white;
-                                a{
-                                    color: $white;
-                                }
-                            }
-                            @if map-get($button-colors, nth($colors, $i)) ==$white{
-                                color:$blue;
-                                background: darken($white,5%);
                             }
                         }
                         &:focus{
@@ -88,24 +77,9 @@
         } //fin Button
     }
     // Modificadores
-    .button-full{
+    .b-full{
         display: block;
         width: 100%;
     }
-	.button-sm{
-		padding: 8px 15px !important;
-		font-size: 14px !important;
-	}
-	.button-lg{
-		padding: 20px 60px !important;
-		font-size: 18px !important;
-	}
-	.button-widht{
-		width: 200px;
-  		height: auto;
-		@include respond-to("mobil-mx"){
-			margin: 5px 0;
-			width: 100%;
-		}
-	}
+	
 }
